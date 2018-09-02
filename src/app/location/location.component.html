@@ -1,0 +1,9 @@
+<div>
+  <!--<div>{{x}} of {{y}} matches</div>-->
+  <div *ngFor="let listing of listingArray; let i = index" (click)="showDetails(i)">
+  <img [src]="listing.img_url" [width]="listing.thumb_width" [height]="listing.thumb_height">
+    {{listing.price_formatted}}
+  </div>
+  <app-button></app-button>
+</div>
+
