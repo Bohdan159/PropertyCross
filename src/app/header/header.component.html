@@ -1,3 +1,18 @@
-<div *ngIf="!checkLocation()">
-  <app-button text="back" (click)="moveBack()"></app-button>
+<div [ngSwitch]="checkLocation()">
+  <div *ngSwitchCase="''">
+    <div>PropertyCross</div>
+    <app-button text="Faves" (click)="navigate('/favourites')"></app-button>
+  </div>
+  <div *ngSwitchCase="'/locations'">
+    <app-button text="Back" (click)="navigate('/')"></app-button>
+  </div>
+  <div *ngSwitchCase="'/favourites'">
+    <div>Favourites</div>
+    <app-button text="Back" (click)="navigate('/')"></app-button>
+  </div>
+  <div *ngSwitchDefault>
+    <app-button text="Back" (click)="navigate('/locations')"></app-button>
+    <div>Property Details</div>
+    <app-button text="Faves" (click)="navigate('/favourites')"></app-button>
+  </div>
 </div>

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Location} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,16 +9,15 @@ import {Location} from '@angular/common';
 })
 export class HeaderComponent {
 
-  constructor(private location: Location) {
+  constructor(private router: Router, private location: Location) {
   }
 
-  moveBack() {
-    this.location.back();
+  navigate(route: string) {
+    this.router.navigate([route]);
   }
 
   checkLocation() {
-    return this.location.isCurrentPathEqualTo('/');
+    return this.location.path();
   }
-
 }
 

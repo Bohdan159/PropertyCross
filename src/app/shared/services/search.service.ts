@@ -17,14 +17,14 @@ export class SearchService {
 
   primitiveSearch(place: string): Observable<INestoriaAnswer> {
     return this.http.jsonp<INestoriaAnswer>(
-      'http://api.nestoria.de/api?' +
-      'country=de&' +
+      'http://api.nestoria.co.uk/api?' +
+      'country=uk&' +
       'pretty=1&' +
       'action=search_listings&' +
       'encoding=json&' +
       'listing_type=buy&' +
       'page=1&' +
-      'place_name=berlin',
+      'place_name=WC2N',
       'callback');
   }
 
@@ -40,4 +40,5 @@ export class SearchService {
       `centre_point=${lat},${lng}`,
       'callback');
   }
+// 51.507211, -0.128269
 }

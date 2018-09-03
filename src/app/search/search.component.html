@@ -1,12 +1,6 @@
 <div>
   <div>
-    <h2>PropertyCross</h2>
-    <app-button text="Faves" width="50px" type="button" (click)="navigate('/favorites')"></app-button>
-  </div>
-
-  <div>
-    Use the form below to search for houses to buy. You can search by place-name, postcode or click 'My location',
-    to search in your current location
+    {{text}}
   </div>
   <form [formGroup]="form">
     <input type="text" formControlName="place" [class.error]="!this.form.get('place').value && this.form.get('place').dirty">

@@ -1,0 +1,18 @@
+<div>
+  <div *ngIf="favouriteArray.length">
+    <div *ngFor="let favourite of favouriteArray; let i = index" (click)="showDetails(i)">
+      <div>
+        <img [src]="favourite.img_url" [width]="favourite.thumb_width" [height]="favourite.thumb_height">
+      </div>
+      <div>
+        {{favourite.price_formatted}}
+      </div>
+      <div>
+        {{favourite.title}}
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!favouriteArray.length">
+    {{errorText}}
+  </div>
+</div>

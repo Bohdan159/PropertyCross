@@ -1,7 +1,0 @@
-<div>
-  <!--<div>{{text}}</div>-->
-  <div *ngFor="let favorite of favoriteArray; let i = index" (click)="showDetails(i)">
-    <img [src]="favorite.img_url" [width]="favorite.thumb_width" [height]="favorite.thumb_height">
-    {{favorite.price_formatted}}
-  </div>
-</div>

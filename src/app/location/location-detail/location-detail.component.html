@@ -1,9 +1,25 @@
 <div>
   <div>
-    <h2></h2>
-    <app-button text="{{text}}" (click)="toggleToFavorites()"></app-button>
+    <app-button text="{{buttonText}}" (click)="toggleToFavourites()"></app-button>
   </div>
   <div>
-    {{listing.price_formatted}}
+    <div>
+      {{listing.price_formatted}}
+    </div>
+    <div>
+      {{listing.title}}
+    </div>
+    <div>
+      <img [src]="listing.img_url" [width]="listing.img_width" [height]="listing.img_height">
+    </div>
+    <div>
+      {{formattedCount(listing.bedroom_number, 'bedroom')}}
+    </div>
+    <div>
+      {{formattedCount(listing.bathroom_number, 'bathroom')}}
+    </div>
+    <div>
+      {{listing.summary}}
+    </div>
   </div>
 </div>
