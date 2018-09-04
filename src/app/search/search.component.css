@@ -1,3 +1,13 @@
 .error {
   background: #000;
 }
+
+.locations {
+  border-collapse: collapse;
+  border: 1px solid black;
+  width: 500px;
+}
+
+.locations > tr {
+  border-bottom: 1px solid;
+}

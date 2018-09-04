@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { LocationComponent } from './location.component';
-import {ButtonModule} from '../shared/button/button.module';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {LocationComponent} from './location.component';
+import {ButtonModule} from '../shared/components/button/button.module';
 import {RouterModule} from '@angular/router';
 
 @NgModule({

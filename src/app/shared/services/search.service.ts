@@ -2,20 +2,13 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {INestoriaAnswer} from '../Interfaces/INestoriaAnswer';
-// {
-//   // providedIn: 'root'
-// }
 
 @Injectable()
 export class SearchService {
 
-  searchUrl: string;
+  constructor(private http: HttpClient) { }
 
-  constructor(
-    private http: HttpClient
-  ) { }
-
-  primitiveSearch(place: string): Observable<INestoriaAnswer> {
+  primitiveSearch(place_name: string): Observable<INestoriaAnswer> {
     return this.http.jsonp<INestoriaAnswer>(
       'http://api.nestoria.co.uk/api?' +
       'country=uk&' +
@@ -24,11 +17,11 @@ export class SearchService {
       'encoding=json&' +
       'listing_type=buy&' +
       'page=1&' +
-      'place_name=WC2N',
+      `place_name=${place_name}`,
       'callback');
   }
 
-  myLocationSearch(lat: number, lng: number): Observable<INestoriaAnswer> {
+  myLocationSearch(lat: number = 51.511712, lng: number = -0.127712): Observable<INestoriaAnswer> {
     return this.http.jsonp<INestoriaAnswer>(
       `http://api.nestoria.co.uk/api?` +
       'country=uk&' +
@@ -37,8 +30,7 @@ export class SearchService {
       'encoding=json&' +
       'listing_type=buy&' +
       'page=1&' +
-      `centre_point=${lat},${lng}`,
+      `centre_point=${lat}, ${lng}`,
       'callback');
   }
-// 51.507211, -0.128269
 }

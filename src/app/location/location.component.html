@@ -1,6 +1,6 @@
 <div>
-  <!--<div>{{x}} of {{y}} matches</div>-->
-  <div *ngFor="let listing of listingArray; let i = index" (click)="showDetails(i)" class="location">
+  <div>{{total_results}} matches</div>
+  <div *ngFor="let listing of listingArray; let i = index" [routerLink]="['/locations/detail', i]" class="location">
     <div>
       <img [src]="listing.img_url" [width]="listing.thumb_width" [height]="listing.thumb_height">
     </div>
@@ -11,6 +11,6 @@
       {{listing.title}}
     </div>
   </div>
-  <app-button></app-button>
+  <app-button text="{{text}}" (click)="loadMore()"></app-button>
 </div>
 

@@ -11,8 +11,8 @@ export class FavouritesService {
     return this.favouriteArray;
   }
 
-  existFavourite(favourite: IListing) {
-    return this.favouriteArray.some((item) => {
+  existFavourite(favourite: IListing): boolean {
+    return this.favouriteArray.some((item): boolean => {
       return item.lister_url === favourite.lister_url;
     });
   }
@@ -20,6 +20,7 @@ export class FavouritesService {
   addFavourite(favourite: IListing) {
     this.favouriteArray.push(favourite);
   }
+
   deleteFavourite(favourite: IListing) {
     this.favouriteArray.splice(this.favouriteArray.indexOf(favourite), 1);
   }

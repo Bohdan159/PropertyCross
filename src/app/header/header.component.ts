@@ -16,7 +16,7 @@ export class HeaderComponent {
     this.router.navigate([route]);
   }
 
-  checkLocation() {
+  checkLocation(): string {
     return this.location.path();
   }
 }

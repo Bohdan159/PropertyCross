@@ -9,14 +9,33 @@ import {Router} from '@angular/router';
 })
 export class LocationComponent implements OnInit {
   listingArray: IListing[];
+  total_pages: number;
+  total_results: number;
+  page: number;
+  text: string;
+  // countListings: number;
+  // num_res: number;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.listingArray = JSON.parse(localStorage.getItem('response')).listings;
+    const {listings, page, total_pages, total_results} = JSON.parse(localStorage.getItem('response'));
+    this.listingArray = listings;
+    this.page = page;
+    this.total_pages = total_pages;
+    this.total_results = total_results;
+
+    // this.countListings = this.page * 20;
+    // this.num_res = 225 - this.countListings;
+    // if (this.num_res > 20)
+
   }
 
-  showDetails(index) {
+  showDetails(index: number) {
     this.router.navigate(['/locations/detail', index]);
+  }
+
+  loadMore() {
+
   }
 }

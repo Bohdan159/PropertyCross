@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FavouritesService} from '../shared/services/favourites.service';
 import {IListing} from '../shared/Interfaces/IListing';
 import {Router} from '@angular/router';
-import {text_const} from '../shared/constants/textsConst';
+import {texts_const} from '../shared/constants/textsConst';
 
 @Component({
   selector: 'app-favourite',
@@ -11,7 +11,7 @@ import {text_const} from '../shared/constants/textsConst';
 })
 export class FavouriteComponent implements OnInit {
   favouriteArray: IListing[];
-  errorText: string = text_const.FAVOURITE_ERROR_TEXT;
+  errorText: string = texts_const.FAVOURITE_ERROR_TEXT;
 
   constructor(private favouriteService: FavouritesService,
               private router: Router) { }
@@ -20,7 +20,7 @@ export class FavouriteComponent implements OnInit {
     this.favouriteArray = this.favouriteService.getFavourites();
   }
 
-  showDetails(index) {
+  showDetails(index: number) {
     this.router.navigate(['/locations/detail', index]);
   }
 }
