@@ -1,33 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {IListing} from '../../shared/Interfaces/IListing';
 import {ActivatedRoute} from '@angular/router';
-import {FavouritesService} from '../../shared/services/favourites.service';
+import {FavouritesService} from '../../services/favourites.service';
+import {LocalStorageService} from '../../services/localStorage.service';
+import {IResponse} from '../../shared/Interfaces/IResponse';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-location-detail',
   templateUrl: './location-detail.component.html',
-  styleUrls: ['./location-detail.component.css']
+  styleUrls: ['./location-detail.component.scss']
 })
-export class LocationDetailComponent implements OnInit {
+export class LocationDetailComponent implements OnInit, OnDestroy {
   listing: IListing;
-  index: number;
   buttonText: string;
 
-  constructor(private activateRoute: ActivatedRoute, private favouriteService: FavouritesService) { }
+  private index: number;
+  private destroyStream = new Subject<void>();
+
+  constructor(private activateRoute: ActivatedRoute,
+              private favouriteService: FavouritesService,
+              private localStorageService: LocalStorageService
+  ) { }
 
   ngOnInit() {
-    this.activateRoute.params.subscribe(params => this.index = params['id']);
-    this.listing = JSON.parse(localStorage.getItem('response')).listings[this.index];
-    if (this.favouriteService.existFavourite(this.listing)) {
-      this.buttonText = '-';
-    } else {
-      this.buttonText = '+';
-    }
+    this.initComponent();
+  }
+
+  ngOnDestroy() {
+    this.destroyStream.next();
   }
 
   toggleToFavourites() {
-    if (this.favouriteService.existFavourite(this.listing)) {
-      this.favouriteService.deleteFavourite(this.listing);
+    const index = this.favouriteService.findFavourite(this.listing);
+    if (index !== -1) {
+      this.favouriteService.deleteFavourite(index);
       this.buttonText = '+';
     } else {
       this.favouriteService.addFavourite(this.listing);
@@ -45,5 +53,15 @@ export class LocationDetailComponent implements OnInit {
     if (count > 1) {
       return count + ' ' + title + 's';
     }
+  }
+
+  private initComponent() {
+    this.activateRoute
+      .params
+      .pipe(takeUntil(this.destroyStream))
+      .subscribe(params => this.index = params['id']);
+
+    this.listing = this.localStorageService.getItem<IResponse>('Response').listings[this.index];
+    this.buttonText = this.favouriteService.existFavourite(this.listing) ? '-' : '+';
   }
 }

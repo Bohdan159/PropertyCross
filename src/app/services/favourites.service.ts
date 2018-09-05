@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {IListing} from '../Interfaces/IListing';
+import {IListing} from '../shared/Interfaces/IListing';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FavouritesService {
   private favouriteArray: IListing[] = [];
-
-  constructor() { }
 
   getFavourites(): IListing[] {
     return this.favouriteArray;
@@ -21,7 +21,17 @@ export class FavouritesService {
     this.favouriteArray.push(favourite);
   }
 
-  deleteFavourite(favourite: IListing) {
-    this.favouriteArray.splice(this.favouriteArray.indexOf(favourite), 1);
+  deleteFavourite(index) {
+    this.favouriteArray.splice(index, 1);
+  }
+
+  findFavourite({lister_url}: IListing): number {
+    let favouriteIndex = -1;
+    this.favouriteArray.forEach((item, index) => {
+      if (item.lister_url === lister_url) {
+        return favouriteIndex = index;
+      }
+    });
+    return favouriteIndex;
   }
 }

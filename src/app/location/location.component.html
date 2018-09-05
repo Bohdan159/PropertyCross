@@ -1,5 +1,5 @@
 <div>
-  <div>{{total_results}} matches</div>
+  <div>{{countListings}} of {{total_results}} matches</div>
   <div *ngFor="let listing of listingArray; let i = index" [routerLink]="['/locations/detail', i]" class="location">
     <div>
       <img [src]="listing.img_url" [width]="listing.thumb_width" [height]="listing.thumb_height">
@@ -11,6 +11,7 @@
       {{listing.title}}
     </div>
   </div>
-  <app-button text="{{text}}" (click)="loadMore()"></app-button>
+  <app-button text="{{text}}" (click)="loadMore()" *ngIf="hideLoadButton()"></app-button>
+  <div>Results for {{search_term}}, showing {{countListings}} of {{total_results}} properties</div>
 </div>
 

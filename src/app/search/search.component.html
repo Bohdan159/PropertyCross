@@ -4,9 +4,16 @@
   </div>
   <form [formGroup]="form">
     <input type="text" formControlName="place" [class.error]="!this.form.get('place').value && this.form.get('place').dirty">
-    <app-button text="Go" width="20px" (click)="search()"></app-button>
+    <app-button text="Go" width="20px" (click)="search()" type="submit"></app-button>
   </form>
   <app-button text="My location" width="80px" type="button" (click)="searchMyLocation()"></app-button>
+
+  <div *ngIf="!error && recentSearches?.length">
+    <div>{{ text }}</div>
+    <div *ngFor="let recentSearch of recentSearches; let i = index">
+      <div>{{ recentSearch.name_place }} №{{ i + 1 }} ({{ recentSearch.total_results }})</div>
+    </div>
+  </div>
 
   <div *ngIf="!error && customResponse?.locations.length > 1">
     <div>{{ text }}</div>
@@ -15,13 +22,6 @@
         <td>{{ location.long_title }}</td>
       </tr>
     </table>
-  </div>
-
-  <div *ngIf="!error && recentSearches.length && customResponse?.locations.length < 2">
-    <div>{{ text }}</div>
-    <div *ngFor="let recentSearch of recentSearches; let i = index">
-      <div>{{ recentSearch.name_place }} №{{ i }} ({{ recentSearch.total_results }})</div>
-    </div>
   </div>
 
   <div *ngIf="error">

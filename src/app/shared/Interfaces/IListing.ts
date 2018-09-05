@@ -32,4 +32,5 @@ export interface IListing {
   title: string;
   updated_in_days: number;
   updated_in_days_formatted: string;
+  index_location?: number;
 }

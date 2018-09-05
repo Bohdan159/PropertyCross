@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {ButtonModule} from '../../shared/components/button/button.module';
+import {NgModule} from '@angular/core';
 import {LocationDetailComponent} from './location-detail.component';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    ButtonModule
+    SharedModule
   ],
   exports: [LocationDetailComponent],
   declarations: [LocationDetailComponent]

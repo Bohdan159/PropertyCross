@@ -1,13 +1,11 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ButtonModule} from '../shared/components/button/button.module';
 import {SearchComponent} from './search.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    ButtonModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
   ],

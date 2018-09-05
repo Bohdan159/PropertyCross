@@ -4,19 +4,16 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {SearchComponent} from './search/search.component';
-import {ButtonModule} from './shared/components/button/button.module';
 import {SearchModule} from './search/search.module';
 import {LocationDetailModule} from './location/location-detail/location-detail.module';
 import {LocationModule} from './location/location.module';
 import {HeaderModule} from './header/header.module';
-import {SearchService} from './shared/services/search.service';
 import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 import {LocationComponent} from './location/location.component';
 import {LocationDetailComponent} from './location/location-detail/location-detail.component';
-import {FavouritesService} from './shared/services/favourites.service';
 import {FavouriteComponent} from './favourite/favourite.component';
 import {FavouriteModule} from './favourite/favourite.module';
-import {RecentSearchesService} from './shared/services/recentSearches.service';
+import {SharedModule} from './shared/shared.module';
 
 const appRoutes: Routes = [
   { path: 'locations', component: LocationComponent, pathMatch: 'full'},
@@ -28,7 +25,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     BrowserModule,
-    ButtonModule,
+    SharedModule,
     SearchModule,
     HeaderModule,
     LocationModule,
@@ -39,11 +36,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [AppComponent],
-  bootstrap: [AppComponent],
-  providers: [
-    SearchService,
-    FavouritesService,
-    RecentSearchesService
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
