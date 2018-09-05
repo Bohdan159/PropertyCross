@@ -62,6 +62,6 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
       .subscribe(params => this.index = params['id']);
 
     this.listing = this.localStorageService.getItem<IResponse>('Response').listings[this.index];
-    this.buttonText = this.favouriteService.existFavourite(this.listing) ? '-' : '+';
+    this.buttonText = this.favouriteService.findFavourite(this.listing) !== -1 ? '-' : '+';
   }
 }
