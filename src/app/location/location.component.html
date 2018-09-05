@@ -1,17 +1,17 @@
-<div>
-  <div>{{countListings}} of {{total_results}} matches</div>
+<div class="wrapper">
+  <div class="text">{{countListings}} of {{total_results}} matches</div>
   <div *ngFor="let listing of listingArray; let i = index" [routerLink]="['/locations/detail', i]" class="location">
-    <div>
+    <div class="img_wrapper">
       <img [src]="listing.img_url" [width]="listing.thumb_width" [height]="listing.thumb_height">
     </div>
-    <div>
-      {{listing.price_formatted}}
-    </div>
-    <div>
-      {{listing.title}}
+    <div class="text_wrapper">
+      <div>{{listing.price_formatted}}</div>
+      <div>{{listing.title}}</div>
     </div>
   </div>
-  <app-button text="{{text}}" (click)="loadMore()" *ngIf="hideLoadButton()"></app-button>
-  <div>Results for {{search_term}}, showing {{countListings}} of {{total_results}} properties</div>
+  <div *ngIf="listingArray.length">
+    <app-button text="{{text}}" (click)="loadMore()" *ngIf="hideLoadButton()"></app-button>
+    <div class="bottom_text">Results for {{search_term}}, showing {{countListings}} of {{total_results}} properties</div>
+  </div>
 </div>
 

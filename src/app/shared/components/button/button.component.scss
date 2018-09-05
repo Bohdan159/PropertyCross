@@ -1,0 +1,19 @@
+.btn {
+  font-size: 26px;
+  background-color: #fff;
+  border: 1px solid black;
+  box-shadow: 3px 3px 3px 0;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.btn:hover {
+  background: #eee;
+}
+
+.btn:active {
+  background: #888888;
+}

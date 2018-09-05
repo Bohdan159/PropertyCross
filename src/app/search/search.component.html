@@ -1,30 +1,28 @@
 <div>
-  <div>
+  <div class="text">
     {{instructional_text}}
   </div>
   <form [formGroup]="form">
-    <input type="text" formControlName="place" [class.error]="!this.form.get('place').value && this.form.get('place').dirty">
-    <app-button text="Go" width="20px" (click)="search()" type="submit"></app-button>
+    <input type="text" formControlName="place" [class.input_error]="!this.form.get('place').value && this.form.get('place').dirty">
+    <app-button text="Go" width="100px" (click)="search()" type="submit" class="btn_wrapper"></app-button>
+    <app-button text="My location" width="170px" type="button" (click)="searchMyLocation()" class="btn_wrapper"></app-button>
   </form>
-  <app-button text="My location" width="80px" type="button" (click)="searchMyLocation()"></app-button>
 
   <div *ngIf="!error && recentSearches?.length">
-    <div>{{ text }}</div>
-    <div *ngFor="let recentSearch of recentSearches; let i = index">
-      <div>{{ recentSearch.name_place }} №{{ i + 1 }} ({{ recentSearch.total_results }})</div>
+    <div class="text">{{ text }}</div>
+    <div *ngFor="let recentSearch of recentSearches; let i = index" class="box">
+      <div class="item">{{ recentSearch.name_place }} №{{ i + 1 }} ({{ recentSearch.total_results }})</div>
     </div>
   </div>
 
   <div *ngIf="!error && customResponse?.locations.length > 1">
-    <div>{{ text }}</div>
-    <table class="locations">
-      <tr *ngFor="let location of customResponse?.locations" (click)="clarifyRequest(location.place_name)">
-        <td>{{ location.long_title }}</td>
-      </tr>
-    </table>
+    <div class="text">{{ text }}</div>
+    <div *ngFor="let location of customResponse?.locations" (click)="clarifyRequest(location.place_name)" class="box">
+       <div class="item">{{ location.long_title }}</div>
+     </div>
   </div>
 
-  <div *ngIf="error">
+  <div *ngIf="error" class="text">
     {{ error }}
   </div>
 </div>

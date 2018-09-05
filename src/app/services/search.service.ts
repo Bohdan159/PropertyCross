@@ -33,7 +33,7 @@ export class SearchService {
       `encoding=${queryConst.ENCODING}&` +
       `listing_type=${queryConst.LISTING_TYPE}&` +
       `page=${page}&` +
-      `centre_point=${lat}, ${lng}&` +
+      `centre_point=${lat},${lng}&` +
       `callback=${queryConst.CALLBACK}`,
       'callback');
   }

@@ -1,24 +1,24 @@
-<div>
-  <div>
+<div class="wrapper">
+  <div class="btn_wrapper">
     <app-button text="{{buttonText}}" (click)="toggleToFavourites()"></app-button>
   </div>
   <div>
-    <div>
+    <div class="text">
       {{listing.price_formatted}}
     </div>
-    <div>
+    <div class="text title_text">
       {{listing.title}}
     </div>
     <div>
       <img [src]="listing.img_url" [width]="listing.img_width" [height]="listing.img_height">
     </div>
-    <div>
+    <div class="descr_text">
       {{formattedCount(listing.bedroom_number, 'bedroom')}}
     </div>
-    <div>
+    <div class="descr_text">
       {{formattedCount(listing.bathroom_number, 'bathroom')}}
     </div>
-    <div>
+    <div class="bottom_text">
       {{listing.summary}}
     </div>
   </div>

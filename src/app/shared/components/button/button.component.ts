@@ -9,6 +9,7 @@ export class ButtonComponent {
   @Input() width: string;
   @Input() text: string;
   @Input() type: string;
+  @Input() margin_left: string;
 
   @Output() clicked = new EventEmitter();
 

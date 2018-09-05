@@ -1,0 +1,16 @@
+.wrapper {
+  margin-bottom: 30px;
+}
+
+.header {
+  margin: 0 auto;
+  max-width: 640px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.text {
+  font-size: 32px;
+  font-weight: bold;
+}

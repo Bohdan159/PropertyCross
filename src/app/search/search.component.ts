@@ -101,12 +101,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.searchService
       .centrePointSearch()
       .pipe(takeUntil(this.destroyStream))
-      .pipe(timeout(5000))
+      // .pipe(timeout(5000))
       .subscribe(({response, request}: INestoriaAnswer) => {
           this.checkResponseCodes(response, request);
-        },
-        () => {
-          this.error = errorMessages.NETWORK_CONNECTION_ISSUE;
         });
   }
 
