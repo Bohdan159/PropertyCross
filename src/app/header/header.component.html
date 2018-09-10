@@ -1,20 +1,8 @@
-<div [ngSwitch]="checkLocation()" class="wrapper">
-  <div *ngSwitchCase="''" class="header">
-    <div></div>
-    <div class="text">PropertyCross</div>
-    <app-button text="Faves" [routerLink]="['/favourites']" width="86px" class="btn_wrapper"></app-button>
-  </div>
-  <div *ngSwitchCase="'/locations'" class="header">
-    <app-button text="Back" [routerLink]="['/']"></app-button>
-  </div>
-  <div *ngSwitchCase="'/favourites'" class="header">
-    <app-button text="Back" [routerLink]="['/']"></app-button>
-    <div class="text">Favourites</div>
-    <div></div>
-  </div>
-  <div *ngSwitchDefault class="header">
-    <app-button text="Back" [routerLink]="['/locations']"></app-button>
-    <div class="text">Property Details</div>
-    <app-button text="Faves" [routerLink]="['/favourites']"></app-button>
+<div class="wrapper">
+  <div class="header">
+    <app-button *ngIf="backBtn === 1" text="Back" [routerLink]="['/']"></app-button>
+    <app-button *ngIf="backBtn === 2" text="Back" [routerLink]="['/locations']"></app-button>
+    <app-button *ngIf="favesBtn" text="Faves" [routerLink]="['/favourites']"></app-button>
+    <div *ngIf="text" class="text">{{text}}</div>
   </div>
 </div>

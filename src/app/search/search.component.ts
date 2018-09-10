@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SearchService} from '../services/search.service';
 import {takeUntil, timeout} from 'rxjs/operators';
 import {INestoriaAnswer} from '../shared/Interfaces/INestoriaAnswer';
@@ -97,11 +97,14 @@ export class SearchComponent implements OnInit, OnDestroy {
         });
   }
 
+  checkError() {
+    return !this.form.get('place').value && (this.form.get('place').touched || this.form.get('place').dirty);
+  }
+
   private requestForSearchMyLocation(position: IPosition) {
     this.searchService
       .centrePointSearch()
       .pipe(takeUntil(this.destroyStream))
-      // .pipe(timeout(5000))
       .subscribe(({response, request}: INestoriaAnswer) => {
           this.checkResponseCodes(response, request);
         });
@@ -192,7 +195,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private initForm() {
     this.form = this.builder.group({
-      place: ['']
+      place: ['', [Validators.required]]
     });
   }
 

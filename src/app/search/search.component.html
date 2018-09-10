@@ -3,7 +3,7 @@
     {{instructional_text}}
   </div>
   <form [formGroup]="form">
-    <input type="text" formControlName="place" [class.input_error]="!this.form.get('place').value && this.form.get('place').dirty">
+    <input type="text" formControlName="place" [class.input_error]="checkError()">
     <app-button text="Go" width="100px" (click)="search()" type="submit" class="btn_wrapper"></app-button>
     <app-button text="My location" width="170px" type="button" (click)="searchMyLocation()" class="btn_wrapper"></app-button>
   </form>

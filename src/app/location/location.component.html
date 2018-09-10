@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="text">{{countListings}} of {{total_results}} matches</div>
-  <div *ngFor="let listing of listingArray; let i = index" [routerLink]="['/locations/detail', i]" class="location">
+  <div *ngFor="let listing of listingArray" [routerLink]="['/locations/detail', listing.index_location]" class="location">
     <div class="img_wrapper">
       <img [src]="listing.img_url" [width]="listing.thumb_width" [height]="listing.thumb_height">
     </div>
